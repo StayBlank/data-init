@@ -1,0 +1,14 @@
+{
+  "output": "output.impl.FileOutput",
+  "number": 10000,
+  "fieldConfig": [
+    {
+      "name": "id",
+      "type": "string",
+      "clazz": "init.impl.IdInit"
+    }
+  ]
+}
+
+
+
