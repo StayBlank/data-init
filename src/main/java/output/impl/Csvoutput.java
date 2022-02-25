@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 
 public class Csvoutput implements Output {
     @Override
-    public void write(List<Map<String, String>> datas) {
+    public void write(List<Map<String, String>> datas, String name) {
         try {
             List<String> datasValueStr = datas.stream().map(data -> data.values().stream().map(v -> v + "").collect(Collectors.joining(","))).collect(Collectors.toList());
-            FileUtils.writeLines(new File("src/main/resources/datas.txt"), datasValueStr);
+            FileUtils.writeLines(new File("src/main/resources/datas/" + name + ".txt"), datasValueStr);
         } catch (IOException e) {
             e.printStackTrace();
         }

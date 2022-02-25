@@ -6,6 +6,7 @@ import java.util.List;
 public class Config {
     private String output;
     private int number;
+    private int threadNumber;
     private List<FieldConfig> fieldConfig;
 
     public String getOutput() {
@@ -22,6 +23,14 @@ public class Config {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public int getThreadNumber() {
+        return threadNumber;
+    }
+
+    public void setThreadNumber(int threadNumber) {
+        this.threadNumber = threadNumber;
     }
 
     public List<FieldConfig> getFieldConfig() {

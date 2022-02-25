@@ -1,6 +1,7 @@
 {
   "output": "output.impl.Csvoutput",
   "number": 10,
+  "threadNumber": 5,
   "fieldConfig": [
     {
       "name": "id",
