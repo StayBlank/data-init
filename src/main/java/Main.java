@@ -1,4 +1,3 @@
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import init.Init;
 import model.Config;
@@ -8,10 +7,7 @@ import output.Output;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     private static Map<String, Class> classMap = new HashMap<>();
@@ -25,7 +21,7 @@ public class Main {
             Config configObject = JSONObject.parseObject(configStr, Config.class);
             List datas = new ArrayList();
             for (int i = 0; i < configObject.getNumber(); i++) {
-                JSONObject data = new JSONObject();
+                Map data = new LinkedHashMap();
                 configObject.getFieldConfig().forEach(config -> {
                     String configClazz = config.getClazz();
                     try {

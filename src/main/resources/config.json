@@ -1,11 +1,11 @@
 {
-  "output": "output.impl.FileOutput",
+  "output": "output.impl.Csvoutput",
   "number": 10,
   "fieldConfig": [
     {
       "name": "id",
       "type": "string",
-      "clazz": "init.impl.IdInit"
+      "clazz": "init.impl.FileInit"
     },
     {
       "name": "name",
@@ -15,7 +15,7 @@
     {
       "name": "age",
       "type": "string",
-      "clazz": "init.impl.IdInit"
+      "clazz": "init.impl.AgeInit"
     }
   ]
 }
