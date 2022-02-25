@@ -1,9 +1,19 @@
 {
   "output": "output.impl.FileOutput",
-  "number": 10000,
+  "number": 10,
   "fieldConfig": [
     {
       "name": "id",
+      "type": "string",
+      "clazz": "init.impl.IdInit"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "clazz": "init.impl.NameInit"
+    },
+    {
+      "name": "age",
       "type": "string",
       "clazz": "init.impl.IdInit"
     }
