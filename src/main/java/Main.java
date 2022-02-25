@@ -9,9 +9,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
+    private static Map<String, Class> classMap = new HashMap<>();
+    private static Map<String, Init> initMap = new HashMap<>();
+
     public static void main(String[] args) {
         String configPath = "src/main/resources/config.json";
         File configFile = new File(configPath);
@@ -24,18 +29,22 @@ public class Main {
                 configObject.getFieldConfig().forEach(config -> {
                     String configClazz = config.getClazz();
                     try {
-                        Class clazz = Class.forName(configClazz);
-                        try {
-                            Init init = (Init) clazz.newInstance();
-                            String initValue = init.init();
-                            System.out.println(initValue);
-                            data.put(config.getName(), initValue);
-                        } catch (InstantiationException e) {
-                            e.printStackTrace();
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
+                        Class clazz;
+                        if (classMap.containsKey(configClazz)) {
+                            clazz = classMap.get(configClazz);
+                        } else {
+                            clazz = Class.forName(configClazz);
+                            classMap.put(configClazz, clazz);
                         }
-                    } catch (ClassNotFoundException e) {
+                        Init init;
+                        if (initMap.containsKey(configClazz)) {
+                            init = initMap.get(configClazz);
+                        } else {
+                            init = (Init) clazz.newInstance();
+                        }
+                        String initValue = init.init();
+                        data.put(config.getName(), initValue);
+                    } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
                         e.printStackTrace();
                     }
                 });
@@ -46,9 +55,7 @@ public class Main {
             try {
                 Output output = (Output) outputClass.newInstance();
                 output.write(datas);
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         } catch (IOException | ClassNotFoundException e) {
