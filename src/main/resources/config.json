@@ -1,5 +1,5 @@
 {
-  "output": "output.impl.Csvoutput",
+  "output": "output.impl.Hiveput",
   "number": 10,
   "threadNumber": 5,
   "fieldConfig": [
