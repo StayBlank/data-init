@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Hiveput implements Output {
+public class HdfsOutput implements Output {
     @Override
     public void write(List<Map<String, String>> datas, String name) {
         try {
